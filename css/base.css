@@ -1,7 +1,16 @@
 html {
     box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: "copperplate";
 }
 
 * {
     box-sizing: inherit;
 }
+
+body {
+    display: grid;
+    grid-template-rows: 60px auto 60px;
+    height: 100vh;
+    margin: 0;
+  }

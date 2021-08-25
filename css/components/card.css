@@ -1,3 +1,89 @@
 .card {
-    background: rgb(151, 151, 177);
+    border: 2px groove rgb(139, 108, 108);
+    border-radius: 10px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
+
+.card__bookmark {
+    padding: 0;
+    height: 55px;
+    width: 20px;
+    border: 20px solid rgb(139, 108, 108);
+    border-bottom-color: transparent ;
+    background-color: transparent;
+    border-radius: 4px;
+
+    position: absolute;
+    top: -6px;
+    right: 10px;
+}
+
+.card__bookmark--hover:hover {
+    border: 15px solid rgb(139, 108, 108);
+    border-bottom-color: transparent ;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.card__bookmark--hover {
+    height: 40px;
+    width: 15px;
+    border: 15px solid white;
+    position: absolute;
+    top: -2px;
+    right: 14.5px;
+    border-bottom-color: transparent ;
+    background-color: transparent;
+    border-radius: 4px;
+}
+
+
+.card__question {
+    color: rgba(73, 112, 84, 0.74);
+    text-align: center;
+    width: 100%;
+}
+
+.card__show__button {
+    border-radius: 10px;
+    color:whitesmoke;
+    background-color: rgba(73, 112, 84, 0.5) ;
+    text-align: center;
+    width: 150px;
+    font-size: 1em;
+}
+
+.card__show__button:hover {
+    background-color: rgba(73, 112, 84, 0.7);
+    cursor: pointer;
+}
+
+.card__answer--hidden {
+    display: none;
+}
+
+.card__answer {
+    text-align: center;
+    color: rgb(70, 53, 53);
+}
+
+.tags {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .tags__item {
+    padding: 8px;
+    border: 1px solid rgba(73, 112, 84, 0.7);
+    border-radius: 100px;
+    margin: 4px;
+    color: rgba(51, 80, 60, 0.7);
+  }
