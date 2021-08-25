@@ -6,9 +6,6 @@ align-items: center;
 justify-content: center;
 margin: 0;
 padding: 0%;
-
-
-
 }
 
 h1{
@@ -16,4 +13,8 @@ h1{
     color: whitesmoke;
     align-items: center;
     font-size: 2em;
+}
+
+.ownquestion:after {
+    content:'\2661';
 }
