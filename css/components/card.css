@@ -26,7 +26,7 @@
 .card__bookmark--hover:hover {
     border: 15px solid rgb(139, 108, 108);
     border-bottom-color: transparent ;
-    background-color: transparent;
+    background-color: transparent; 
     cursor: pointer;
 }
 
