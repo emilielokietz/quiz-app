@@ -14,17 +14,25 @@
         <h1 class="ownquestion__title">Your Card</h1>
     </header>
 
-    <main>
-        <section class="create">
+    <main class="main__create">
+        <form class="create">
             <h2>Your Time To Create</h2>
             <button class="card__bookmark"></button>
             <!--<button class="card__bookmark card__bookmark--hover"></button>-->
-            <input class="input create__question" type="text" placeholder="What is your question?">
-            <input type="text" class="input create__answer" placeholder="What is the answer?">
-            <input type="text" class=" input create__tags" placeholder="Add your tags">
-            <button class="card__show__button">Ready</button>
+            <label class="create__label" for="ownquestion">
+                Enter your Question:
+                <input id="ownquestion" class="input create__question" type="text"
+                    placeholder="What is your question?"></label>
+            <label class="create__label" for="ownanswer">
+                What is the answer?
+                <textarea id="ownanswer" type="text" class="input create__answer" placeholder="What is the answer?"
+                    rows="5" colums="1"></textarea></label>
+            <label class="create__label" for="owntags">
+                Add #tags:
+                <input id="owntags" type="text" class=" input create__tags" placeholder="Add your tags"></label>
+            <button class="card__show__button">Submit</button>
 
-        </section>
+        </form>
 
     </main>
 
