@@ -19,10 +19,12 @@
 .nav__link {
     text-align: center;
     border-right: rgba(128, 128, 128, 0.692);
+    width: 100%;
 }
 
 .nav__link__icon {
     width: 20%;
+    /*height: 20px;*/
     
 }
 
