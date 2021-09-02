@@ -70,10 +70,22 @@ buttonAddEventListener(`profile`)
 
 const singleBookmarkButton = document.querySelector('#smallbookmark1')
 
-singleBookmarkButton.addEventListener('click', () => {
-  if (singleBookmarkButton.classList.contains('card__bookmark--clicked')) {
-    singleBookmarkButton.classList.remove('card__bookmark--clicked')
-  } else {
-    singleBookmarkButton.classList.add('card__bookmark--clicked')
-  }
+// singleBookmarkButton.addEventListener('click', () => {
+//   if (singleBookmarkButton.classList.contains('card__bookmark--clicked')) {
+//     singleBookmarkButton.classList.remove('card__bookmark--clicked')
+//   } else {
+//     singleBookmarkButton.classList.add('card__bookmark--clicked')
+//   }
+// })
+
+const singleBookmark = document.querySelectorAll('.card__bookmark--hover')
+
+singleBookmark.forEach((elementNow, index) => {
+  elementNow.addEventListener('click', () => {
+    if (elementNow.classList.contains('card__bookmark--clicked')) {
+      elementNow.classList.remove('card__bookmark--clicked')
+    } else {
+      elementNow.classList.add('card__bookmark--clicked')
+    }
+  })
 })
