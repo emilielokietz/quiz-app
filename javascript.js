@@ -3,15 +3,15 @@ const bookmarksButton = getElement('.bookmarks__button')
 const createButton = getElement('.create__button')
 const profileButton = getElement('.profile__button')
 
-const mainSiteHome = getElement('.main__site__home')
-const mainSiteBookmarks = getElement('.main__site__bookmarks')
-const mainSiteCreate = getElement('.main__site__create')
-const mainSiteProfile = getElement('.main__site__profile')
+const mainSiteHome = getElement('#main__home')
+const mainSiteBookmarks = getElement('#main__bookmarks')
+const mainSiteCreate = getElement('#main__create')
+const mainSiteProfile = getElement('#main__profile')
 
-const headerSiteHome = getElement('.header__site__home')
-const headerSiteBookmarks = getElement('.header__site__bookmarks')
-const headerSiteCreate = getElement('.header__site__create')
-const headerSiteProfile = getElement('.header__site__profile')
+const headerSiteHome = getElement('#header__home')
+const headerSiteBookmarks = getElement('#header__bookmarks')
+const headerSiteCreate = getElement('#header__create')
+const headerSiteProfile = getElement('#header__profile')
 
 // NAV Buttons
 
@@ -31,8 +31,8 @@ function hideAll() {
 function buttonAddEventListener(name) {
   getElement(`.${name}__button`).addEventListener('click', () => {
     hideAll()
-    getElement(`.main__site__${name}`).classList.remove('hidden')
-    getElement(`.header__site__${name}`).classList.remove('hidden')
+    getElement(`#main__${name}`).classList.remove('hidden')
+    getElement(`#header__${name}`).classList.remove('hidden')
   })
 }
 

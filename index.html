@@ -10,23 +10,23 @@
   </head>
 
   <body>
-    <header class="header header__site__home">
+    <header class="header" id="header__home">
       <h1 class="index__title">Quizzy</h1>
     </header>
 
-    <header class="header header__site__bookmarks hidden">
+    <header class="header hidden" id="header__bookmarks">
         <h1 class="bookmarks__title">Your Marked Questions</h1>
     </header>
 
-    <header class="header header__site__create hidden">
+    <header class="header hidden" id="header__create">
         <h1 class="ownquestion__title">Your Card</h1>
     </header>
 
-    <header class="header header__site__profile hidden">
+    <header class="header hidden" id="header__profile">
         <h1 class="profile__title">Your Profile</h1>
     </header>
 
-    <main class="main main__site__home">
+    <main class="main" id="main__home">
       <section class="card">
         <button class="card__bookmark"></button>
         <button class="card__bookmark card__bookmark--hover" id="smallbookmark1"></button>
@@ -172,7 +172,7 @@
       </section>
     </main>
 
-    <main class="main main__site__bookmarks hidden">
+    <main class="main hidden" id="main__bookmarks">
         <section class="card">
             <button class="card__bookmark"></button>
             <!--<button class="card__bookmark card__bookmark--hover"></button>-->
@@ -213,7 +213,7 @@
 
     </main>
 
-    <main class="main main__site__create hidden main__create">
+    <main class="main hidden main__create" id="main__create">
         <form class="create">
             <h2>Your Time To Create</h2>
             <button class="card__bookmark"></button>
@@ -235,7 +235,7 @@
 
     </main>
 
-    <main class="main main__site__profile hidden funny__icon__title">
+    <main class="main hidden funny__icon__title" id="main__profile">
 
         <p class="title__profilesite">Hello !</p>
         <img src="owl.png" alt="funny icon profile" class="profile__funny__icon">
