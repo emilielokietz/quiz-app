@@ -19,20 +19,20 @@ function hideAll() {
   const mainArray = document.querySelectorAll('.main')
 
   mainArray.forEach((arrayEl, index) => {
-    arrayEl.classList.add('site--hidden')
+    arrayEl.classList.add('hidden')
   })
 
   const headerArray = document.querySelectorAll('.header')
   headerArray.forEach((arrayEl, index) => {
-    arrayEl.classList.add('site--hidden')
+    arrayEl.classList.add('hidden')
   })
 }
 
 function buttonAddEventListener(name) {
   getElement(`.${name}__button`).addEventListener('click', () => {
     hideAll()
-    getElement(`.main__site__${name}`).classList.remove('site--hidden')
-    getElement(`.header__site__${name}`).classList.remove('site--hidden')
+    getElement(`.main__site__${name}`).classList.remove('hidden')
+    getElement(`.header__site__${name}`).classList.remove('hidden')
   })
 }
 
@@ -47,28 +47,28 @@ buttonAddEventListener(`bookmarks`)
 buttonAddEventListener(`profile`)
 
 // homeButton.addEventListener('click', () => {
-//   mainSiteHome.classList.remove('site--hidden')
-//   headerSiteHome.classList.remove('site--hidden')
+//   mainSiteHome.classList.remove('hidden')
+//   headerSiteHome.classList.remove('hidden')
 // })
 
 // bookmarksButton.addEventListener('click', () => {
-//   mainSiteBookmarks.classList.remove('site--hidden')
-//   headerSiteBookmarks.classList.remove('site--hidden')
+//   mainSiteBookmarks.classList.remove('hidden')
+//   headerSiteBookmarks.classList.remove('hidden')
 // })
 
 // createButton.addEventListener('click', () => {
-//   mainSiteCreate.classList.remove('site--hidden')
-//   headerSiteCreate.classList.remove('site--hidden')
+//   mainSiteCreate.classList.remove('hidden')
+//   headerSiteCreate.classList.remove('hidden')
 // })
 
 // profileButton.addEventListener('click', () => {
-//   mainSiteProfile.classList.remove('site--hidden')
-//   headerSiteProfile.classList.remove('site--hidden')
+//   mainSiteProfile.classList.remove('hidden')
+//   headerSiteProfile.classList.remove('hidden')
 // })
 
 // Bookmark
 
-const singleBookmarkButton = document.querySelector('#smallbookmark1')
+// const singleBookmarkButton = document.querySelector('#smallbookmark1')
 
 // singleBookmarkButton.addEventListener('click', () => {
 //   if (singleBookmarkButton.classList.contains('card__bookmark--clicked')) {

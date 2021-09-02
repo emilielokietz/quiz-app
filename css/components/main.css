@@ -5,9 +5,9 @@ main {
   grid-gap: 24px;
 }
 
-.main.site--hidden {
+/* .main.hidden {
   display: none;
-}
+} */
 
 .profile__funny__icon {
   text-align: center;
