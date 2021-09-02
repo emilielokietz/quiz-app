@@ -1,62 +1,79 @@
-const homeButton = document.querySelector('.index__button')
-const bookmarksButton = document.querySelector('.bookmarks__button')
-const createButton = document.querySelector('.ownquestion__button')
-const profileButton = document.querySelector('.profile__button')
+const homeButton = getElement('.home__button')
+const bookmarksButton = getElement('.bookmarks__button')
+const createButton = getElement('.create__button')
+const profileButton = getElement('.profile__button')
 
-const mainSiteHome = document.querySelector('.main__site__home')
-const mainSiteBookmarks = document.querySelector('.main__site__bookmarks')
-const mainSiteCreate = document.querySelector('.main__site__create')
-const mainSiteProfile = document.querySelector('.main__site__profile')
+const mainSiteHome = getElement('.main__site__home')
+const mainSiteBookmarks = getElement('.main__site__bookmarks')
+const mainSiteCreate = getElement('.main__site__create')
+const mainSiteProfile = getElement('.main__site__profile')
 
-const headerSiteHome = document.querySelector('.header__site__home')
-const headerSiteBookmarks = document.querySelector('.header__site__bookmarks')
-const headerSiteCreate = document.querySelector('.header__site__create')
-const headerSiteProfile = document.querySelector('.header__site__profile')
+const headerSiteHome = getElement('.header__site__home')
+const headerSiteBookmarks = getElement('.header__site__bookmarks')
+const headerSiteCreate = getElement('.header__site__create')
+const headerSiteProfile = getElement('.header__site__profile')
 
-homeButton.addEventListener('click', () => {
-  mainSiteHome.classList.remove('site--hidden')
-  mainSiteBookmarks.classList.add('site--hidden')
-  mainSiteCreate.classList.add('site--hidden')
-  mainSiteProfile.classList.add('site--hidden')
+// NAV Buttons
 
-  headerSiteHome.classList.remove('site--hidden')
-  headerSiteBookmarks.classList.add('site--hidden')
-  headerSiteCreate.classList.add('site--hidden')
-  headerSiteProfile.classList.add('site--hidden')
-})
+function hideAll() {
+  const mainArray = document.querySelectorAll('.main')
 
-bookmarksButton.addEventListener('click', () => {
-  mainSiteHome.classList.add('site--hidden')
-  mainSiteBookmarks.classList.remove('site--hidden')
-  mainSiteCreate.classList.add('site--hidden')
-  mainSiteProfile.classList.add('site--hidden')
+  mainArray.forEach((arrayEl, index) => {
+    arrayEl.classList.add('site--hidden')
+  })
 
-  headerSiteHome.classList.add('site--hidden')
-  headerSiteBookmarks.classList.remove('site--hidden')
-  headerSiteCreate.classList.add('site--hidden')
-  headerSiteProfile.classList.add('site--hidden')
-})
+  const headerArray = document.querySelectorAll('.header')
+  headerArray.forEach((arrayEl, index) => {
+    arrayEl.classList.add('site--hidden')
+  })
+}
 
-createButton.addEventListener('click', () => {
-  mainSiteHome.classList.add('site--hidden')
-  mainSiteBookmarks.classList.add('site--hidden')
-  mainSiteCreate.classList.remove('site--hidden')
-  mainSiteProfile.classList.add('site--hidden')
+function buttonAddEventListener(name) {
+  getElement(`.${name}__button`).addEventListener('click', () => {
+    hideAll()
+    getElement(`.main__site__${name}`).classList.remove('site--hidden')
+    getElement(`.header__site__${name}`).classList.remove('site--hidden')
+  })
+}
 
-  headerSiteHome.classList.add('site--hidden')
-  headerSiteBookmarks.classList.add('site--hidden')
-  headerSiteCreate.classList.remove('site--hidden')
-  headerSiteProfile.classList.add('site--hidden')
-})
+function getElement(htmlClass) {
+  const a = document.querySelector(htmlClass)
+  return a
+}
 
-profileButton.addEventListener('click', () => {
-  mainSiteHome.classList.add('site--hidden')
-  mainSiteBookmarks.classList.add('site--hidden')
-  mainSiteCreate.classList.add('site--hidden')
-  mainSiteProfile.classList.remove('site--hidden')
+buttonAddEventListener(`home`)
+buttonAddEventListener(`create`)
+buttonAddEventListener(`bookmarks`)
+buttonAddEventListener(`profile`)
 
-  headerSiteHome.classList.add('site--hidden')
-  headerSiteBookmarks.classList.add('site--hidden')
-  headerSiteCreate.classList.add('site--hidden')
-  headerSiteProfile.classList.remove('site--hidden')
+// homeButton.addEventListener('click', () => {
+//   mainSiteHome.classList.remove('site--hidden')
+//   headerSiteHome.classList.remove('site--hidden')
+// })
+
+// bookmarksButton.addEventListener('click', () => {
+//   mainSiteBookmarks.classList.remove('site--hidden')
+//   headerSiteBookmarks.classList.remove('site--hidden')
+// })
+
+// createButton.addEventListener('click', () => {
+//   mainSiteCreate.classList.remove('site--hidden')
+//   headerSiteCreate.classList.remove('site--hidden')
+// })
+
+// profileButton.addEventListener('click', () => {
+//   mainSiteProfile.classList.remove('site--hidden')
+//   headerSiteProfile.classList.remove('site--hidden')
+// })
+
+// Bookmark
+
+const singleBookmarkButton = document.querySelector('#smallbookmark1')
+
+singleBookmarkButton.addEventListener('click', () => {
+  if (singleBookmarkButton.classList.contains('card__bookmark--clicked')) {
+    singleBookmarkButton.classList.remove('card__bookmark--clicked')
+  } else {
+    singleBookmarkButton.classList.add('card__bookmark--clicked')
+  }
 })
