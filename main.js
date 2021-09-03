@@ -3,15 +3,15 @@ const bookmarksButton = getElement('.bookmarks__button')
 const createButton = getElement('.create__button')
 const profileButton = getElement('.profile__button')
 
-const mainSiteHome = getElement('.main__site__home')
-const mainSiteBookmarks = getElement('.main__site__bookmarks')
-const mainSiteCreate = getElement('.main__site__create')
-const mainSiteProfile = getElement('.main__site__profile')
+const mainSiteHome = getElement('#main__home')
+const mainSiteBookmarks = getElement('#main__bookmarks')
+const mainSiteCreate = getElement('#main__create')
+const mainSiteProfile = getElement('#main__profile')
 
-const headerSiteHome = getElement('.header__site__home')
-const headerSiteBookmarks = getElement('.header__site__bookmarks')
-const headerSiteCreate = getElement('.header__site__create')
-const headerSiteProfile = getElement('.header__site__profile')
+const headerSiteHome = getElement('#header__home')
+const headerSiteBookmarks = getElement('#header__bookmarks')
+const headerSiteCreate = getElement('#header__create')
+const headerSiteProfile = getElement('#header__profile')
 
 // NAV Buttons
 
@@ -19,20 +19,20 @@ function hideAll() {
   const mainArray = document.querySelectorAll('.main')
 
   mainArray.forEach((arrayEl, index) => {
-    arrayEl.classList.add('site--hidden')
+    arrayEl.classList.add('hidden')
   })
 
   const headerArray = document.querySelectorAll('.header')
   headerArray.forEach((arrayEl, index) => {
-    arrayEl.classList.add('site--hidden')
+    arrayEl.classList.add('hidden')
   })
 }
 
 function buttonAddEventListener(name) {
   getElement(`.${name}__button`).addEventListener('click', () => {
     hideAll()
-    getElement(`.main__site__${name}`).classList.remove('site--hidden')
-    getElement(`.header__site__${name}`).classList.remove('site--hidden')
+    getElement(`#main__${name}`).classList.remove('hidden')
+    getElement(`#header__${name}`).classList.remove('hidden')
   })
 }
 
@@ -47,28 +47,28 @@ buttonAddEventListener(`bookmarks`)
 buttonAddEventListener(`profile`)
 
 // homeButton.addEventListener('click', () => {
-//   mainSiteHome.classList.remove('site--hidden')
-//   headerSiteHome.classList.remove('site--hidden')
+//   mainSiteHome.classList.remove('hidden')
+//   headerSiteHome.classList.remove('hidden')
 // })
 
 // bookmarksButton.addEventListener('click', () => {
-//   mainSiteBookmarks.classList.remove('site--hidden')
-//   headerSiteBookmarks.classList.remove('site--hidden')
+//   mainSiteBookmarks.classList.remove('hidden')
+//   headerSiteBookmarks.classList.remove('hidden')
 // })
 
 // createButton.addEventListener('click', () => {
-//   mainSiteCreate.classList.remove('site--hidden')
-//   headerSiteCreate.classList.remove('site--hidden')
+//   mainSiteCreate.classList.remove('hidden')
+//   headerSiteCreate.classList.remove('hidden')
 // })
 
 // profileButton.addEventListener('click', () => {
-//   mainSiteProfile.classList.remove('site--hidden')
-//   headerSiteProfile.classList.remove('site--hidden')
+//   mainSiteProfile.classList.remove('hidden')
+//   headerSiteProfile.classList.remove('hidden')
 // })
 
 // Bookmark
 
-const singleBookmarkButton = document.querySelector('#smallbookmark1')
+// const singleBookmarkButton = document.querySelector('#smallbookmark1')
 
 // singleBookmarkButton.addEventListener('click', () => {
 //   if (singleBookmarkButton.classList.contains('card__bookmark--clicked')) {
