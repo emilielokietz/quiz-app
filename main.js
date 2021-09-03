@@ -89,3 +89,29 @@ singleBookmark.forEach((elementNow, index) => {
     }
   })
 })
+
+const showAnswer = document.querySelectorAll('.card__show__button')
+const textAnswer = document.querySelectorAll('.card__answer')
+
+showAnswer.forEach((buttonNow, indexButton) => {
+  buttonNow.addEventListener('click', () => {
+    if (textAnswer[indexButton].classList.contains('card__answer--hidden')) {
+      textAnswer[indexButton].classList.remove('card__answer--hidden')
+      buttonNow.textContent = 'Hide Answer'
+    } else {
+      textAnswer[indexButton].classList.add('card__answer--hidden')
+      buttonNow.textContent = 'Show Answer'
+    }
+  })
+})
+
+const questionInput = document.querySelector('#ownquestion')
+const answerInput = document.querySelector('#ownanswer')
+const labelInput = document.querySelector('#owntags')
+const submitButton = document.querySelector('#submit__button')
+
+submitButton.addEventListener('click', () => {
+  questionInput.value = ''
+  answerInput.value = ''
+  labelInput.value = ''
+})
