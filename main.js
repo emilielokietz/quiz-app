@@ -13,7 +13,124 @@ const headerSiteBookmarks = getElement('#header__bookmarks')
 const headerSiteCreate = getElement('#header__create')
 const headerSiteProfile = getElement('#header__profile')
 
-// NAV Buttons
+const contentForCard = [
+  {
+    question: 'Which European nation was said to invent hot dogs?',
+    answer: 'Germany',
+    isBookmarked: false,
+    showAnswer: false,
+    tags: ['food', 'history', 'culture'],
+  },
+  {
+    question: 'About how many taste buds does the average human tongue have?',
+    answer: '10.000',
+    isBookmarked: false,
+    showAnswer: false,
+    tags: ['history', 'social'],
+  },
+  {
+    question: 'Which American state is the largest (by area)?',
+    answer: 'Alaska',
+    isBookmarked: false,
+    showAnswer: false,
+    tags: ['history', 'social'],
+  },
+  {
+    question: 'You can sneeze in your sleep. True or False? ',
+    answer: 'False',
+    isBookmarked: true,
+    showAnswer: false,
+    tags: ['history', 'social'],
+  },
+  {
+    question: 'What is the smallest planet in our solar system?? ',
+    answer: 'Mercury',
+    isBookmarked: false,
+    showAnswer: false,
+    tags: ['history', 'social'],
+  },
+  {
+    question:
+      'Which country in the world is believed to have the most miles of motorway? ',
+    answer: 'China',
+    isBookmarked: false,
+    showAnswer: false,
+    tags: ['history', 'social'],
+  },
+  {
+    question:
+      'How many permanent members are there on the UN security council? ',
+    answer:
+      'Five: China, France, Russian Federation, United Kingdom, United States',
+    isBookmarked: true,
+    showAnswer: false,
+    tags: ['history', 'social'],
+  },
+]
+
+// Start ----------------------------------------------------------------------------------
+
+window.addEventListener('load', () => {
+  renderCard(contentForCard, mainSiteHome)
+  buttonAddEventListener(`home`)
+  buttonAddEventListener(`create`)
+  buttonAddEventListener(`bookmarks`)
+  buttonAddEventListener(`profile`)
+})
+
+// ------------- Function RenderCard -------------------------------------------------------
+
+function renderCard(array, targetElement) {
+  array.forEach(cardData => {
+    const cardSection = document.createElement('section')
+    cardSection.classList.add('card')
+    targetElement.appendChild(cardSection)
+
+    const cardBookmark = document.createElement('button')
+    cardBookmark.classList.add('card__bookmark')
+    cardSection.appendChild(cardBookmark)
+
+    const cardBookmark2 = document.createElement('button')
+    cardBookmark2.classList.add('card__bookmark')
+    cardBookmark2.classList.add('card__bookmark--hover')
+    cardBookmark2.id = 'smallbookmark1'
+    cardSection.appendChild(cardBookmark2)
+
+    const cardQuestion = document.createElement('h2')
+    cardQuestion.classList.add('card__question')
+    cardQuestion.textContent = cardData.question
+    cardSection.appendChild(cardQuestion)
+
+    const cardButton = document.createElement('button')
+    cardButton.classList.add('card__show__button')
+    cardButton.classList.add('button__style')
+    cardButton.textContent = 'Show Answer'
+    cardSection.appendChild(cardButton)
+
+    const cardAnswer = document.createElement('p')
+    cardAnswer.classList.add('card__answer')
+    cardAnswer.classList.add('card__answer--hidden')
+    cardAnswer.textContent = cardData.answer
+    cardSection.appendChild(cardAnswer)
+
+    const cardTags = document.createElement('ul')
+    cardTags.classList.add('tags')
+    cardSection.appendChild(cardTags)
+
+    cardData.tags.forEach(tag => {
+      const tagItem = document.createElement('li')
+      tagItem.classList.add('tags__item')
+      tagItem.textContent = tag
+      cardTags.appendChild(tagItem)
+    })
+  })
+}
+
+// function getData() {
+//   return contentForCArd
+// }
+
+// -------------------- NAV Buttons ---------------------------------------------------------------
 
 function hideAll() {
   const mainArray = document.querySelectorAll('.main')
@@ -33,6 +150,19 @@ function buttonAddEventListener(name) {
     hideAll()
     getElement(`#main__${name}`).classList.remove('hidden')
     getElement(`#header__${name}`).classList.remove('hidden')
+
+    if (name == 'home') {
+      mainSiteHome.innerHTML = ''
+      renderCard(contentForCard, mainSiteHome)
+      bookmarkToggle()
+      answerToggle()
+    } else if (name == 'bookmarks') {
+      const newArray = contentForCard.filter(bookmark => bookmark.isBookmarked)
+      mainSiteBookmarks.innerHTML = ''
+      renderCard(newArray, mainSiteBookmarks)
+      bookmarkToggle()
+      answerToggle()
+    }
   })
 }
 
@@ -46,64 +176,41 @@ buttonAddEventListener(`create`)
 buttonAddEventListener(`bookmarks`)
 buttonAddEventListener(`profile`)
 
-// homeButton.addEventListener('click', () => {
-//   mainSiteHome.classList.remove('hidden')
-//   headerSiteHome.classList.remove('hidden')
-// })
+// -------------- bookmark change color --------------------------------------------------------
 
-// bookmarksButton.addEventListener('click', () => {
-//   mainSiteBookmarks.classList.remove('hidden')
-//   headerSiteBookmarks.classList.remove('hidden')
-// })
+function bookmarkToggle() {
+  const singleBookmark = document.querySelectorAll('.card__bookmark--hover')
 
-// createButton.addEventListener('click', () => {
-//   mainSiteCreate.classList.remove('hidden')
-//   headerSiteCreate.classList.remove('hidden')
-// })
-
-// profileButton.addEventListener('click', () => {
-//   mainSiteProfile.classList.remove('hidden')
-//   headerSiteProfile.classList.remove('hidden')
-// })
-
-// Bookmark
-
-// const singleBookmarkButton = document.querySelector('#smallbookmark1')
-
-// singleBookmarkButton.addEventListener('click', () => {
-//   if (singleBookmarkButton.classList.contains('card__bookmark--clicked')) {
-//     singleBookmarkButton.classList.remove('card__bookmark--clicked')
-//   } else {
-//     singleBookmarkButton.classList.add('card__bookmark--clicked')
-//   }
-// })
-
-const singleBookmark = document.querySelectorAll('.card__bookmark--hover')
-
-singleBookmark.forEach((elementNow, index) => {
-  elementNow.addEventListener('click', () => {
-    if (elementNow.classList.contains('card__bookmark--clicked')) {
-      elementNow.classList.remove('card__bookmark--clicked')
-    } else {
-      elementNow.classList.add('card__bookmark--clicked')
-    }
+  singleBookmark.forEach((elementNow, index) => {
+    elementNow.addEventListener('click', () => {
+      if (elementNow.classList.contains('card__bookmark--clicked')) {
+        elementNow.classList.remove('card__bookmark--clicked')
+      } else {
+        elementNow.classList.add('card__bookmark--clicked')
+      }
+    })
   })
-})
+}
 
-const showAnswer = document.querySelectorAll('.card__show__button')
-const textAnswer = document.querySelectorAll('.card__answer')
+// --------------- Show Answer Button ------------------------------------------------------------
 
-showAnswer.forEach((buttonNow, indexButton) => {
-  buttonNow.addEventListener('click', () => {
-    if (textAnswer[indexButton].classList.contains('card__answer--hidden')) {
-      textAnswer[indexButton].classList.remove('card__answer--hidden')
-      buttonNow.textContent = 'Hide Answer'
-    } else {
-      textAnswer[indexButton].classList.add('card__answer--hidden')
-      buttonNow.textContent = 'Show Answer'
-    }
+function answerToggle() {
+  const showAnswer = document.querySelectorAll('.card__show__button')
+  const textAnswer = document.querySelectorAll('.card__answer')
+
+  showAnswer.forEach((buttonNow, indexButton) => {
+    buttonNow.addEventListener('click', () => {
+      if (textAnswer[indexButton].classList.contains('card__answer--hidden')) {
+        textAnswer[indexButton].classList.remove('card__answer--hidden')
+        buttonNow.textContent = 'Hide Answer'
+      } else {
+        textAnswer[indexButton].classList.add('card__answer--hidden')
+        buttonNow.textContent = 'Show Answer'
+      }
+    })
   })
-})
+}
+// -------------- Submit Buuton on Create Page ------------------------------------------------------
 
 const questionInput = document.querySelector('#ownquestion')
 const answerInput = document.querySelector('#ownanswer')
@@ -115,70 +222,3 @@ submitButton.addEventListener('click', () => {
   answerInput.value = ''
   labelInput.value = ''
 })
-
-{
-  /* <section class="card">
-        <button class="card__bookmark"></button>
-        <button class="card__bookmark card__bookmark--hover" id="smallbookmark1"></button>
-        <h2 class="card__question">Question</h2>
-
-        <button class="card__show__button button__style">Schow Answer</button>
-
-        <p class="card__answer card__answer--hidden">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-          Exercitationem cum temporibus incidunt ab autem, blanditiis quod sunt
-          modi tenetur totam sit necessitatibus sint nemo nulla velit dicta amet
-          doloremque! Amet.
-        </p>
-        <ul class="tags">
-          <li class="tags__item">#Tag1</li>
-          <li class="tags__item">#Tag2</li>
-          <li class="tags__item">#Tag3</li>
-        </ul>
-    </section> */
-}
-
-const cardSection = document.createElement('section')
-cardSection.classList.add('card')
-document.main.appendChild(cardSection)
-
-const cardBookmark = document.createElement('button')
-cardBookmark.classList.add('card__bookmark')
-cardSection.appendChild(cardBookmark)
-
-const cardBookmark2 = document.createElement('button')
-cardBookmark2.classList.add('card__bookmark')
-cardBookmark2.classList.add('card__bookmark--hover')
-cardBookmark2.id = 'smallbookmark1'
-cardSection.appendChild(cardBookmark2)
-
-const cardQuestion = document.createElement('h2')
-cardQuestion.classList.add('card__question')
-cardQuestion.textContent = 'Question'
-cardSection.appendChild(cardQuestion)
-
-{
-  /* <button class="card__show__button button__style">Schow Answer</button> */
-}
-
-const cardButton = document.createElement('button')
-cardButton.classList.add('card__show__button')
-cardButton.classList.add('button__style')
-cardButton.textContent = 'Show Answer'
-cardSection.appendChild(cardButton)
-
-{
-  /* <p class="card__answer card__answer--hidden">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-          Exercitationem cum temporibus incidunt ab autem, blanditiis quod sunt
-          modi tenetur totam sit necessitatibus sint nemo nulla velit dicta amet
-          doloremque! Amet.
-        </p> */
-}
-
-const cardAnswer = document.createElement('p')
-cardAnswer.classList.add('card__answer')
-cardAnswer.classList.add('card__answer--hidden')
-cardAnswer.textContent =
-  'Lorem ipsum, dolor sit amet consectetur adipisicing elit.Exercitationem cum temporibus incidunt ab autem, blanditiis quod sunt modi tenetur totam sit necessitatibus sint nemo nulla velit dicta amet doloremque! Amet.'
-cardSection.appendChild(cardAnswer)
