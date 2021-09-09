@@ -71,11 +71,7 @@ const contentForCard = [
 // Start ----------------------------------------------------------------------------------
 
 window.addEventListener('load', () => {
-  renderCard(contentForCard, mainSiteHome)
-  buttonAddEventListener(`home`)
-  buttonAddEventListener(`create`)
-  buttonAddEventListener(`bookmarks`)
-  buttonAddEventListener(`profile`)
+  renderHomeSite()
 })
 
 // ------------- Function RenderCard -------------------------------------------------------
@@ -145,6 +141,28 @@ function hideAll() {
   })
 }
 
+function renderHomeSite() {
+  mainSiteHome.innerHTML = ''
+  // addQuestion('Hier kommt die Frage', 'Das ist die Antwort', [
+  //   'tag1',
+  //   'tag2',
+  //   'tag3',
+  //   'tag4',
+  // ])
+  renderCard(contentForCard, mainSiteHome)
+  bookmarkToggle()
+  answerToggle()
+}
+
+function renderBookmarkSite() {
+  const newArray = contentForCard.filter(bookmark => bookmark.isBookmarked)
+  mainSiteBookmarks.innerHTML = ''
+  renderCard(contentForCard, mainSiteBookmarks)
+  renderCard(newArray, mainSiteBookmarks)
+  bookmarkToggle()
+  answerToggle()
+}
+
 function buttonAddEventListener(name) {
   getElement(`.${name}__button`).addEventListener('click', () => {
     hideAll()
@@ -152,16 +170,9 @@ function buttonAddEventListener(name) {
     getElement(`#header__${name}`).classList.remove('hidden')
 
     if (name == 'home') {
-      mainSiteHome.innerHTML = ''
-      renderCard(contentForCard, mainSiteHome)
-      bookmarkToggle()
-      answerToggle()
+      renderHomeSite()
     } else if (name == 'bookmarks') {
-      const newArray = contentForCard.filter(bookmark => bookmark.isBookmarked)
-      mainSiteBookmarks.innerHTML = ''
-      renderCard(newArray, mainSiteBookmarks)
-      bookmarkToggle()
-      answerToggle()
+      renderBookmarkSite()
     }
   })
 }
@@ -185,8 +196,10 @@ function bookmarkToggle() {
     elementNow.addEventListener('click', () => {
       if (elementNow.classList.contains('card__bookmark--clicked')) {
         elementNow.classList.remove('card__bookmark--clicked')
+        contentForCard[index].isBookmarked = false
       } else {
         elementNow.classList.add('card__bookmark--clicked')
+        contentForCard[index].isBookmarked = true
       }
     })
   })
@@ -218,7 +231,21 @@ const labelInput = document.querySelector('#owntags')
 const submitButton = document.querySelector('#submit__button')
 
 submitButton.addEventListener('click', () => {
+  const userQuestion = document.querySelector('#ownquestion')
+  let que = userQuestion.ariaValueText
+  console.log(que)
+  addQuestion()
   questionInput.value = ''
   answerInput.value = ''
   labelInput.value = ''
 })
+
+function addQuestion(question, answer, tags) {
+  contentForCard.push({
+    question: question,
+    answer: answer,
+    tags: tags,
+    isBookmarked: false,
+    showAnswer: false,
+  })
+}
