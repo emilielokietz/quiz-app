@@ -13,6 +13,8 @@ const headerSiteBookmarks = getElement('#header__bookmarks')
 const headerSiteCreate = getElement('#header__create')
 const headerSiteProfile = getElement('#header__profile')
 
+let a = -1
+
 const contentForCard = [
   {
     question: 'Which European nation was said to invent hot dogs?',
@@ -20,6 +22,7 @@ const contentForCard = [
     isBookmarked: false,
     showAnswer: false,
     tags: ['food', 'history', 'culture'],
+    id: 0,
   },
   {
     question: 'About how many taste buds does the average human tongue have?',
@@ -27,6 +30,7 @@ const contentForCard = [
     isBookmarked: false,
     showAnswer: false,
     tags: ['history', 'social'],
+    id: 1,
   },
   {
     question: 'Which American state is the largest (by area)?',
@@ -34,6 +38,7 @@ const contentForCard = [
     isBookmarked: false,
     showAnswer: false,
     tags: ['history', 'social'],
+    id: 2,
   },
   {
     question: 'You can sneeze in your sleep. True or False? ',
@@ -41,6 +46,7 @@ const contentForCard = [
     isBookmarked: true,
     showAnswer: false,
     tags: ['history', 'social'],
+    id: 3,
   },
   {
     question: 'What is the smallest planet in our solar system?? ',
@@ -48,6 +54,7 @@ const contentForCard = [
     isBookmarked: false,
     showAnswer: false,
     tags: ['history', 'social'],
+    id: 4,
   },
   {
     question:
@@ -56,6 +63,7 @@ const contentForCard = [
     isBookmarked: false,
     showAnswer: false,
     tags: ['history', 'social'],
+    id: 5,
   },
   {
     question:
@@ -65,6 +73,7 @@ const contentForCard = [
     isBookmarked: true,
     showAnswer: false,
     tags: ['history', 'social'],
+    id: 6,
   },
 ]
 
@@ -155,11 +164,11 @@ function renderHomeSite() {
 }
 
 function renderBookmarkSite() {
+  checkIfChange()
   const newArray = contentForCard.filter(bookmark => bookmark.isBookmarked)
   mainSiteBookmarks.innerHTML = ''
-  renderCard(contentForCard, mainSiteBookmarks)
   renderCard(newArray, mainSiteBookmarks)
-  bookmarkToggle()
+  bookmarkToggle2()
   answerToggle()
 }
 
@@ -201,6 +210,17 @@ function bookmarkToggle() {
         elementNow.classList.add('card__bookmark--clicked')
         contentForCard[index].isBookmarked = true
       }
+    })
+  })
+}
+
+function bookmarkToggle2() {
+  const singleBookmark = document.querySelectorAll('.card__bookmark--hover')
+
+  singleBookmark.forEach((elementNow, index) => {
+    elementNow.addEventListener('click', () => {
+      a = elementNow.id
+      renderBookmarkSite()
     })
   })
 }
@@ -248,4 +268,11 @@ function addQuestion(question, answer, tags) {
     isBookmarked: false,
     showAnswer: false,
   })
+}
+
+function checkIfChange() {
+  if (a > -1) {
+    contentForCard[a] = false
+    a = -1
+  }
 }
